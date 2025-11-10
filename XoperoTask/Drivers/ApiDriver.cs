@@ -15,34 +15,17 @@ namespace XoperoTask.Drivers
         public ApiDriver()
         {
             var jsonFlie = File.ReadAllText(Path.Combine("Configs", "apiconfig.json"));
-            
-            ConfiguartionFile config;
 
             try
             {
-                config = JsonConvert.DeserializeObject<ConfiguartionFile>(jsonFlie);
-            }
-            catch (NullReferenceException nullEx)
-            {
-                throw new Exception("Configuration file is null", nullEx);
+                var config = JsonConvert.DeserializeObject<dynamic>(jsonFlie);
+                BaseUrl = config!.BaseUrl;
+                ApiKey = config!.ApiKey;
             }
             catch (JsonException jsonEx)
             {
                 throw new Exception("Error parsing configuration file", jsonEx);
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Error reading configuration file", ex);
-            }
-
-            BaseUrl = config!.BaseUrl;
-            ApiKey = config!.ApiKey;
-        }
-
-        private class ConfiguartionFile()
-        {
-            public required string BaseUrl { get; set; }
-            public required string ApiKey { get; set; }
         }
     }
 }
