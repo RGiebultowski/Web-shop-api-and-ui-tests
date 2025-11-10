@@ -1,10 +1,8 @@
-﻿using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using XoperoTask.Drivers;
+using XoperoTask.Helpers;
+using XoperoTask.TestData;
 
 namespace XoperoTask.API_Tests
 {
@@ -20,10 +18,35 @@ namespace XoperoTask.API_Tests
             client = new RestClient(apiDriver.BaseUrl);
         }
 
-        [Test]
-        public void Test1()
+        [Test, TestCaseSource(typeof(PostUserTestData), nameof(PostUserTestData.UserToCreate))]
+        public async Task PostUserAndCheckApiStatusWithBodyRequest(CreateUserData userData)
         {
             var request = new RestRequest($"{endpoint}", Method.Post);
+            request.AddHeader("x-api-key", apiDriver.ApiKey);
+            request.AddJsonBody(userData);
+            RestResponse response;
+            try
+            {
+                response = await client.ExecuteAsync(request);
+
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail($"API request failed: {ex.Message}");
+                return;
+            }
+
+            Console.WriteLine(response!.Content);
+
+            var dataObject = JsonConvert.DeserializeObject<CreateUserData>(response!.Content);
+
+            Assert.Multiple(() => {
+                Assert.That((int)response.StatusCode, Is.EqualTo(201));
+                Assert.That(dataObject.Name, Is.EqualTo(userData.Name));
+                Assert.That(dataObject.Job, Is.EqualTo(userData.Job));
+                Assert.That(dataObject.Id, Is.Not.Empty);
+                Assert.That(dataObject.createdAt, Is.Not.EqualTo(default(DateTime)));
+            });
         }
 
         [TearDown]

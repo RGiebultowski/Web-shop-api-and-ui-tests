@@ -35,6 +35,8 @@ namespace XoperoTask.API_Tests
                 return;
             }
 
+            Console.WriteLine(response!.Content);
+
             var dataObject = JsonConvert.DeserializeObject<UserResponse>(response!.Content);
 
             var userData = dataObject!.Data;
