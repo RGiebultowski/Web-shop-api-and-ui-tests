@@ -9,7 +9,7 @@ namespace XoperoTask.Drivers
 {
     public class ApiDriver
     {
-        public string ApiBaseUrl { get; set; }
+        public string BaseUrl { get; set; }
         public string ApiKey { get; set; }
 
         public ApiDriver()
@@ -35,13 +35,13 @@ namespace XoperoTask.Drivers
                 throw new Exception("Error reading configuration file", ex);
             }
 
-            ApiBaseUrl = config!.ApiBaseUrl;
+            BaseUrl = config!.BaseUrl;
             ApiKey = config!.ApiKey;
         }
 
         private class ConfiguartionFile()
         {
-            public required string ApiBaseUrl { get; set; }
+            public required string BaseUrl { get; set; }
             public required string ApiKey { get; set; }
         }
     }
