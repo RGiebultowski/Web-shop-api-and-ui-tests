@@ -59,6 +59,11 @@ Otwórz zakładkę **Test Explorer**
 Kliknij **Run All Tests**
 lub uruchom konkretny test
 
+Testy można uruchomić przez **PowerShell**
+
+```bash
+    dotnet test
+```
 
 ## RESULTS
 
