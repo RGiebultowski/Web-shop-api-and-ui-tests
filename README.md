@@ -62,5 +62,5 @@ lub uruchom konkretny test
 
 ## RESULTS
 
-![App Screenshot](./screenshots/report_summary.png)
+![App Screenshot](./screenshoot/report_summary.png)
 
