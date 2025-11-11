@@ -39,9 +39,9 @@ namespace XoperoTask.UI_Tests
             headerPage.ClickShoppingCart();
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(8));
-            wait.Until(ExpectedConditions.UrlContains("/cart.html"));
+            wait.Until(ExpectedConditions.UrlContains(data.CartEndpoint));
 
-            Assert.That(driver.Url, Contains.Substring("/cart.html"));
+            Assert.That(driver.Url, Contains.Substring(data.CartEndpoint));
             Assert.IsTrue(cartPage.IsItemInCart(productName));
         }
 

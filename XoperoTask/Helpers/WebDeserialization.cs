@@ -10,6 +10,8 @@ namespace XoperoTask.Helpers
         public string ValidPassword { get; set; }
         public string InvalidPassword { get; set; }
         public string InvalidUsername { get; set; }
+        public string InventoryEndpoint { get; set; }
+        public string CartEndpoint { get; set; }
         public WebDeserialization()
         {
             var jsonFlie = File.ReadAllText(Path.Combine("Configs", "webconfig.json"));
@@ -21,6 +23,8 @@ namespace XoperoTask.Helpers
                 ValidPassword = config!.ValidPassword;
                 InvalidPassword = config!.InvalidPassword;
                 InvalidUsername = config!.InvalidUsername;
+                InventoryEndpoint = config!.InventoryEndpoint;
+                CartEndpoint = config!.CartEndpoint;
             }
             catch (JsonException jsonEx)
             {

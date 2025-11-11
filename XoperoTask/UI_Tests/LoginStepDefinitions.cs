@@ -27,9 +27,9 @@ namespace XoperoTask.UI_Tests
             loginHelper.LoginUser(driver, data.ValidUsername, data.ValidPassword);
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(8));
-            wait.Until(ExpectedConditions.UrlContains("/inventory.html"));
+            wait.Until(ExpectedConditions.UrlContains(data.InventoryEndpoint));
 
-            Assert.That(driver.Url, Contains.Substring("/inventory.html"));
+            Assert.That(driver.Url, Contains.Substring(data.InventoryEndpoint));
         }
 
         [Test, TestCaseSource(typeof(UsersDataForLogin), nameof(UsersDataForLogin.testCaseUsers))]
