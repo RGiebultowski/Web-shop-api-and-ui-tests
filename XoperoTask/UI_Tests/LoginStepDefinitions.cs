@@ -12,7 +12,7 @@ namespace XoperoTask.UI_Tests
         private IWebDriver driver;
         private WebDeserialization data = new WebDeserialization();
         private LoginHelper loginHelper = new LoginHelper();
-        private bool headlessMode = true;
+        private bool headlessMode = false;
 
         [SetUp]
         public void Setup()

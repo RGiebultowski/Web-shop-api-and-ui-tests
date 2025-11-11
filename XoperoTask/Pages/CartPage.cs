@@ -9,6 +9,8 @@ namespace XoperoTask.Pages
         private IWebDriver driver;
         private readonly WebDriverWait wait;
         private By cartListLocator = By.CssSelector("div[data-test='cart-list']");
+        private IWebElement checkoutButton => driver.FindElement(By.CssSelector("button[data-test='checkout']"));
+
         public CartPage(IWebDriver driver)
         {
             this.driver = driver;
@@ -36,6 +38,11 @@ namespace XoperoTask.Pages
                 }
             }
             return false;
+        }
+
+        public void ClickCheckout()
+        {
+            checkoutButton.Click();
         }
     }
 }

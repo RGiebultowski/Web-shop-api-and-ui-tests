@@ -15,6 +15,8 @@ namespace XoperoTask.Drivers
         {
             var options = new ChromeOptions();
 
+            options.AddArgument("--incognito");
+
             if (headless)
             {
                 options.AddArgument("--headless");
