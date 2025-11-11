@@ -50,6 +50,7 @@ namespace XoperoTask.UI_Tests
         public void TearDown()
         {
             driver.Quit();
+            driver.Dispose();
         }
     }
 }
